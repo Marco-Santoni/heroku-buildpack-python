@@ -4,11 +4,11 @@ puts-step "Installing dependencies with pip"
 [ ! "$FRESH_PYTHON" ] && bpwatch start pip_install
 [ "$FRESH_PYTHON" ] && bpwatch start pip_install_first
 
-/app/.heroku/python/bin/pip install -r requirements.txt --exists-action=w --src=./.heroku/src --allow-all-external  | cleanup | indent
+/app/.heroku/python/bin/pip install -r requirements.txt --exists-action=w --src=./.heroku/src --allow-all-external
 echo
 echo "Install 2"
 echo
-/app/.heroku/python/bin/pip install -r requirements_2.txt --exists-action=w --src=./.heroku/src --allow-all-external  | cleanup | indent
+/app/.heroku/python/bin/pip install -r requirements_2.txt --exists-action=w --src=./.heroku/src --allow-all-external
 
 
 
