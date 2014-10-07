@@ -18,7 +18,7 @@ echo "psycopg2"
 /app/.heroku/python/bin/pip install psycopg2==2.5.3 --exists-action=w --src=./.heroku/src --allow-all-external
 /app/.heroku/python/bin/pip install pyyaml --exists-action=w --src=./.heroku/src --allow-all-external
 echo "\nnumpy\n"
-/app/.heroku/python/bin/pip install numpy==1.8.2 --exists-action=w --src=./.heroku/src --allow-all-external
+/app/.heroku/python/bin/pip install numpy --exists-action=w --src=./.heroku/src --allow-all-external
 echo "Flask"
 /app/.heroku/python/bin/pip install Flask==0.10.1 --exists-action=w --src=./.heroku/src --allow-all-external
 echo "Scipy"
@@ -29,7 +29,7 @@ echo "Scipy"
 
 
 # Smart Requirements handling
-echo "psycopg2==2.5.3\npyyaml\nnumpy==1.8.2\nFlask==0.10.1\nscipy\nscikit-learn==0.15.1\n-e git+https://github.com/jcrudy/py-earth.git#egg=py-earth" > .heroku/python/requirements-declared.txt
+echo "psycopg2==2.5.3\npyyaml\nnumpy\nFlask==0.10.1\nscipy\nscikit-learn==0.15.1\n-e git+https://github.com/jcrudy/py-earth.git#egg=py-earth" > .heroku/python/requirements-declared.txt
 /app/.heroku/python/bin/pip freeze > .heroku/python/requirements-installed.txt
 
 [ ! "$FRESH_PYTHON" ] && bpwatch stop pip_install
