@@ -13,24 +13,18 @@ puts-step "Installing dependencies with pip"
 ## requirements to be installed after successful installation of requirements.txt
 #-e git+https://github.com/jcrudy/py-earth.git#egg=py-earth
 
-echo "psycopg2"
+echo "req 1"
 
-/app/.heroku/python/bin/pip install psycopg2==2.5.3 --exists-action=w --src=./.heroku/src --allow-all-external
-/app/.heroku/python/bin/pip install pyyaml --exists-action=w --src=./.heroku/src --allow-all-external
-echo "\nnumpy\n"
-/app/.heroku/python/bin/pip install numpy --exists-action=w --src=./.heroku/src --allow-all-external
-echo "Flask"
-/app/.heroku/python/bin/pip install Flask==0.10.1 --exists-action=w --src=./.heroku/src --allow-all-external
-echo "Scipy"
-/app/.heroku/python/bin/pip install scipy --exists-action=w --src=./.heroku/src --allow-all-external
-/app/.heroku/python/bin/pip install pscikit-learn==0.15.1 --exists-action=w --src=./.heroku/src --allow-all-external
-/app/.heroku/python/bin/pip install -e git+https://github.com/jcrudy/py-earth.git#egg=py-earth --exists-action=w --src=./.heroku/src --allow-all-external
+/app/.heroku/python/bin/pip install -r requirements.txt --exists-action=w --src=./.heroku/src --allow-all-external
+echo "req 2"
+/app/.heroku/python/bin/pip install -r requirements_2.txt --exists-action=w --src=./.heroku/src --allow-all-external
+echo "req 3"
+/app/.heroku/python/bin/pip install -r requirements_3.txt --exists-action=w --src=./.heroku/src --allow-all-external
 
 
 
 # Smart Requirements handling
-echo "psycopg2==2.5.3\npyyaml\nnumpy\nFlask==0.10.1\nscipy\nscikit-learn==0.15.1\n-e git+https://github.com/jcrudy/py-earth.git#egg=py-earth" > .heroku/python/requirements-declared.txt
-/app/.heroku/python/bin/pip freeze > .heroku/python/requirements-installed.txt
+cat requirements.txt requirements_2.txt requirements_3.txt > .heroku/python/requirements-declared.txt
 
 [ ! "$FRESH_PYTHON" ] && bpwatch stop pip_install
 [ "$FRESH_PYTHON" ] && bpwatch stop pip_install_first
